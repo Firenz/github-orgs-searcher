@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --open",
     "build": "webpack"
   },
-  "author": "",
+  "author": "Alicia Guardeño Albertos <alicia.guardenoalbertos@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.7.7",
