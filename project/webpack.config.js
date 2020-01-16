@@ -7,6 +7,12 @@ module.exports = {
   mode: "development",
   context: path.join(basePath, "src"),
   resolve: {
+    alias: {
+      models: path.resolve(__dirname, "./src/models"),
+      layouts: path.resolve(__dirname, "./src/layouts"),
+      components: path.resolve(__dirname, "./src/components"),
+      api: path.resolve(__dirname, "./src/api")
+    },
     extensions: [".js", ".ts", ".tsx"]
   },
   entry: ["./main.tsx"],

@@ -11,7 +11,14 @@
     "allowJs": true,
     "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": "./src/",
+    "paths": {
+      "layouts": ["layouts/"],
+      "models": ["models/"],
+      "components": ["components/"],
+      "api": ["api/"]
+    }
   },
   "include": ["./src/**/*"]
 }
