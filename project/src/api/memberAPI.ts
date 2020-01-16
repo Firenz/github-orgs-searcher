@@ -1,4 +1,4 @@
-import {MemberEntity, createDefaultMemberEntity } from '../model/member';
+import {MemberEntity, createDefaultMemberEntity } from 'models/member';
 
 class MemberAPI {
 

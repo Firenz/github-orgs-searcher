@@ -1,5 +1,5 @@
 import * as React from "react";
-import { MemberEntity } from "../../model/member";
+import { MemberEntity } from "models/member";
 
 export const MemberHead = () => (
   <tr>

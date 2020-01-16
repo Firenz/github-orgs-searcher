@@ -1,5 +1,5 @@
 import * as React from "react";
-import { MemberEntity } from "../../model/member";
+import { MemberEntity } from "models/member";
 import { memberAPI } from "../../api/memberAPI";
 import { MemberRow } from "./memberRow";
 import { MemberHead } from "./memberHead";
