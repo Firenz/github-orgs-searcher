@@ -1,6 +1,12 @@
 import * as React from "react";
-import { MembersTableComponent } from "./components";
+
+import { SearchMembersScene } from "scenes";
 
 export const App: React.FunctionComponent = () => {
-  return <MembersTableComponent />;
+
+  return (
+    <React.Fragment>
+      <SearchMembersScene />
+    </React.Fragment>
+  );
 };

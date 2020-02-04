@@ -11,6 +11,7 @@ module.exports = {
       models: path.resolve(__dirname, "./src/models"),
       layouts: path.resolve(__dirname, "./src/layouts"),
       components: path.resolve(__dirname, "./src/components"),
+      scenes: path.resolve(__dirname, "./src/scenes"),
       api: path.resolve(__dirname, "./src/api")
     },
     extensions: [".js", ".ts", ".tsx"]
@@ -48,7 +49,20 @@ module.exports = {
         exclude: /node_modules/,
         loader: "file-loader",
         options: {
-          name: "assets/img/[name].[ext]?[hash]"
+          name: "assets/img/[name].[ext]?[hash]",
+          esModule: false
+        }
+      },
+      {
+        test: /\.(png|jpg)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 50000,
+            name: "./img/[hash].[name].[ext]",
+            esModule: false
+          }
         }
       }
     ]

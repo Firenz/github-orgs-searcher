@@ -17,7 +17,8 @@
       "layouts": ["layouts/"],
       "models": ["models/"],
       "components": ["components/"],
-      "api": ["api/"]
+      "api": ["api/"],
+      "scenes": ["scenes/"]
     }
   },
   "include": ["./src/**/*"]
