@@ -10,7 +10,8 @@ const useStyles = makeStyles(() =>
       bottom: 0,
       width: `100%`,
       margin: 0,
-      backgroundColor: "#bb6554",
+      padding: `0.2rem`,
+      backgroundColor: "indianred",
       color: "white",
       display: "flex",
       flexDirection: "row",
@@ -32,7 +33,7 @@ export const FooterLayout = (props: Props) => {
   return (
     <footer>
       <Typography variant="subtitle1" className={classes.footer}>
-        Created with React, made by
+        Developed with React, made by
         <Link
           variant="subtitle1"
           className={classes.link}

@@ -17,7 +17,7 @@ const useStyles = makeStyles(() =>
     },
     img: {
       maxHeight: `6rem`,
-      margin: `1rem 0 0`
+      margin: `0.5rem 0 2rem 0`
     }
   })
 );
@@ -31,7 +31,7 @@ export const HeaderLayout = (props: Props) => {
     <header className={classes.head}>
       <img
         className={classes.img}
-        alt="Lemoncode Formation logotype"
+        alt=""
         src={logoImg}
       />
       <Typography variant="h1" component="h1" className={classes.title}>
