@@ -47,15 +47,6 @@ module.exports = {
       {
         test: /\.(png|jpg|gif|svg)$/,
         exclude: /node_modules/,
-        loader: "file-loader",
-        options: {
-          name: "assets/img/[name].[ext]?[hash]",
-          esModule: false
-        }
-      },
-      {
-        test: /\.(png|jpg)$/,
-        exclude: /node_modules/,
         use: {
           loader: "url-loader",
           options: {
