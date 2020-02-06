@@ -8,7 +8,6 @@ import {
 } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
-import debounce from "lodash.debounce";
 
 import { memberAPI } from "api/memberAPI";
 import { MemberEntity } from "models/member";
@@ -42,36 +41,30 @@ export const MembersListComponent = (props: Props) => {
   const classes = useStyles(props);
 
   const [members, setMembers] = React.useState<MemberEntity[]>([]);
-  const [areMembersLoaded, setAreMembersLoaded] = React.useState<boolean>(false);
-  // const [searchValue, setSearchValue] = React.useState<String>('');
+  const [searchTerm, setSearchTerm] = React.useState<string>('');
+  const [areMembersLoaded, setAreMembersLoaded] = React.useState<boolean>(
+    false
+  );
 
-  let searchTerm: string = "";
   const waitingTime: number = 500;
-
-  const updateSearchTerm = event => {
-    searchTerm = event.target.value;
-    loadMemberDebounced();
-  };
+  const debouncedSearchTerm = useDebounce(searchTerm, waitingTime);
 
   const loadMembers = () => {
     setAreMembersLoaded(false);
-    memberAPI.getAllMembers(searchTerm).then(members => {
-      setMembers(members);
-      setAreMembersLoaded(true);
-    })
-    .catch(() => {
-      setAreMembersLoaded(false);
-    });
+    memberAPI
+      .getAllMembers(searchTerm)
+      .then(members => {
+        setMembers(members);
+        setAreMembersLoaded(true);
+      })
+      .catch(() => {
+        setAreMembersLoaded(false);
+      });
   };
 
-  const loadMemberDebounced = debounce(loadMembers, waitingTime, {
-    leading: false,
-    trailing: true
-  });
-
-  // React.useEffect(() => {
-  //   loadMemberDebounced();
-  // }, [searchValue]);
+  React.useEffect(() => {
+    debouncedSearchTerm ? loadMembers() : [];
+  }, [debouncedSearchTerm]);
 
   return (
     <React.Fragment>
@@ -85,7 +78,7 @@ export const MembersListComponent = (props: Props) => {
           label="GitHub Organization"
           type="text"
           placeholder="lemoncode"
-          onChange={updateSearchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
           fullWidth
           margin="normal"
           InputProps={{
@@ -119,3 +112,30 @@ export const MembersListComponent = (props: Props) => {
     </React.Fragment>
   );
 };
+
+// From https://usehooks.com/useDebounce/
+
+function useDebounce(value, delay) {
+  // State and setters for debounced value
+  const [debouncedValue, setDebouncedValue] = React.useState(value);
+
+  React.useEffect(
+    () => {
+      // Update debounced value after delay
+      const handler = setTimeout(() => {
+        setDebouncedValue(value);
+      }, delay);
+
+      // Cancel the timeout if value changes (also on delay change or unmount)
+      // This is how we prevent debounced value from updating if value is changed ...
+      // .. within the delay period. Timeout gets cleared and restarted.
+      return () => {
+        clearTimeout(handler);
+      };
+    },
+
+    [value, delay] // Only re-call effect if value or delay changes
+  );
+
+  return debouncedValue;
+}
