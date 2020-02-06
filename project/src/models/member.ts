@@ -3,13 +3,13 @@ export interface MemberEntity {
   id: number;
   login: string;
   avatar_url: string;
+  html_url: string;
 }
 
 export interface MemberEntityFull extends MemberEntity {
   node_id: string;
   gravatar_id: string;
   url: string;
-  html_url: string;
   followers_url: string;
   following_url: string;
   gists_url: string;
@@ -26,5 +26,6 @@ export interface MemberEntityFull extends MemberEntity {
 export const createDefaultMemberEntity = () => ({
   id: -1,
   login: "",
-  avatar_url: ""
+  avatar_url: "",
+  html_url: ""
 });

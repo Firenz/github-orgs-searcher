@@ -33,6 +33,7 @@ class MemberAPI {
       member.id = gitHubMember.id;
       member.login = gitHubMember.login;
       member.avatar_url = gitHubMember.avatar_url;
+      member.html_url = gitHubMember.html_url;
 
       return member;
     });

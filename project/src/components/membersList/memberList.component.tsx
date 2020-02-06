@@ -42,6 +42,7 @@ export const MembersListComponent = (props: Props) => {
   const classes = useStyles(props);
 
   const [members, setMembers] = React.useState<MemberEntity[]>([]);
+  const [areMembersLoaded, setAreMembersLoaded] = React.useState<boolean>(false);
   // const [searchValue, setSearchValue] = React.useState<String>('');
 
   let searchTerm: string = "";
@@ -53,8 +54,13 @@ export const MembersListComponent = (props: Props) => {
   };
 
   const loadMembers = () => {
+    setAreMembersLoaded(false);
     memberAPI.getAllMembers(searchTerm).then(members => {
       setMembers(members);
+      setAreMembersLoaded(true);
+    })
+    .catch(() => {
+      setAreMembersLoaded(false);
     });
   };
 
@@ -92,7 +98,7 @@ export const MembersListComponent = (props: Props) => {
         />
       </section>
       <section className={classes.gridSection}>
-        {members && members.length > 0 ? (
+        {areMembersLoaded ? (
           <Grid
             container
             className={classes.grid}
@@ -101,8 +107,8 @@ export const MembersListComponent = (props: Props) => {
             alignItems="center"
           >
             {members.map((member: MemberEntity) => (
-              <Grid item>
-                <MemberCardComponent key={member.id} member={member} />
+              <Grid item key={member.id}>
+                <MemberCardComponent member={member} />
               </Grid>
             ))}
           </Grid>

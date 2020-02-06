@@ -75,13 +75,15 @@ export const MemberCardComponent = (props: { member: MemberEntity }) => {
         }
         subheader={
           <div className={classes.subHeader}>
-            <IconButton
-              color="primary"
-              aria-label="github"
-              className={classes.iconButton}
-            >
-              <GitHubIcon fontSize="large" />
-            </IconButton>
+            <a href={props.member.html_url} target="_blank">
+              <IconButton
+                color="primary"
+                aria-label="github"
+                className={classes.iconButton}
+              >
+                <GitHubIcon fontSize="large" />
+              </IconButton>
+            </a>
           </div>
         }
       />
