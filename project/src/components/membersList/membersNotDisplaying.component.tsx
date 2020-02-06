@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface Props {}
 
-export const MembersNotDisplaying = (props: Props) => {
+export const MembersNotDisplayingComponent = (props: Props) => {
   const classes = useStyles(props);
 
   return (

@@ -1,6 +1,5 @@
 import * as React from "react";
 import {
-  Box,
   Typography,
   TextField,
   InputAdornment,
@@ -11,7 +10,7 @@ import SearchIcon from "@material-ui/icons/Search";
 
 import { memberAPI } from "api/memberAPI";
 import { MemberEntity } from "models/member";
-import { MembersNotDisplaying } from "./membersNotDisplaying.component";
+import { MembersNotDisplayingComponent as MembersNotDisplayingComponent } from "./membersNotDisplaying.component";
 import { MemberCardComponent } from "./memberCard.component";
 
 interface Props {}
@@ -106,7 +105,7 @@ export const MembersListComponent = (props: Props) => {
             ))}
           </Grid>
         ) : (
-          <MembersNotDisplaying />
+          <MembersNotDisplayingComponent />
         )}
       </section>
     </React.Fragment>
