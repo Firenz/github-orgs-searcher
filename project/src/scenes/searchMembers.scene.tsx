@@ -1,5 +1,4 @@
 import * as React from "react";
-import { MembersListComponent } from "components";
 import {
   FooterLayout,
   HeaderLayout,
@@ -7,14 +6,24 @@ import {
   CenteredBodyContainerLayout
 } from "layouts";
 
+import { MembersListComponent } from "components";
+import { SearchMembersComponent } from "components/searchMembers/searchMembers.component";
+
 interface Props {}
 
 export const SearchMembersScene = (props: Props) => {
+  const [updatedSearchTerm, setUpdatedSearchTerm] = React.useState<string>("");
+  
+  const handleUpdatedSearchTerm = (newTerm: string) => {
+    setUpdatedSearchTerm(newTerm);
+  }
+
   return (
     <CenteredBodyContainerLayout>
       <HeaderLayout />
       <MainLayout>
-        <MembersListComponent />
+        <SearchMembersComponent onUpdateSearchTerm={handleUpdatedSearchTerm}/>
+        <MembersListComponent newSearchTerm={updatedSearchTerm}/>
       </MainLayout>
       <FooterLayout />
     </CenteredBodyContainerLayout>

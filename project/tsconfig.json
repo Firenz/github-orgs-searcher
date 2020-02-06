@@ -14,10 +14,11 @@
     "esModuleInterop": true,
     "baseUrl": "./src/",
     "paths": {
-      "layouts": ["layouts/"],
+      "api": ["api/"],
+      "common": ["common/"],
       "models": ["models/"],
       "components": ["components/"],
-      "api": ["api/"],
+      "layouts": ["layouts/"],
       "scenes": ["scenes/"]
     }
   },
