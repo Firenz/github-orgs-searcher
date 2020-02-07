@@ -6,8 +6,7 @@ import {
   CenteredBodyContainerLayout
 } from "layouts";
 
-import { MembersListComponent } from "components";
-import { SearchMembersComponent } from "components/searchMembers/searchMembers.component";
+import { SearchMembersComponent, MembersListComponent } from "components";
 
 interface Props {}
 

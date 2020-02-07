@@ -1,1 +1,1 @@
-import * as useDebounce from './use-debounce';
+export * from './use-debounce';

@@ -1,1 +1,1 @@
-import * as SearchMembersComponent from './searchMembers.component';
+export * from './searchMembers.component';

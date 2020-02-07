@@ -3,18 +3,18 @@ import { Typography, TextField, InputAdornment } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 
-import { useDebounce } from "common/use-debounce";
+import { useDebounce } from "common";
 
 const useStyles = makeStyles((theme: Theme) =>
-createStyles({
-  searchSection: {
-    width: "80%",
-    margin: `0 auto`
-  },
-  search: {
-    width: `20rem`
-  }
-})
+  createStyles({
+    searchSection: {
+      width: "80%",
+      margin: `0 auto`
+    },
+    search: {
+      width: `20rem`
+    }
+  })
 );
 
 interface Props {
