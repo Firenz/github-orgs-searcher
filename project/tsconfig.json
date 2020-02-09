@@ -15,11 +15,12 @@
     "baseUrl": "./src/",
     "paths": {
       "api": ["api/"],
-      "common": ["common/"],
       "models": ["models/"],
+      "router": ["router/"],
+      "common": ["common/"],
       "components": ["components/"],
       "layouts": ["layouts/"],
-      "scenes": ["scenes/"]
+      "pages": ["pages/"]
     }
   },
   "include": ["./src/**/*"]

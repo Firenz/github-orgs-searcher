@@ -10,10 +10,11 @@ module.exports = {
     alias: {
       api: path.resolve(__dirname, "./src/api"),
       models: path.resolve(__dirname, "./src/models"),
+      router: path.resolve(__dirname, "./src/router"),
       common: path.resolve(__dirname, "./src/common"),
       components: path.resolve(__dirname, "./src/components"),
       layouts: path.resolve(__dirname, "./src/layouts"),
-      scenes: path.resolve(__dirname, "./src/scenes")
+      pages: path.resolve(__dirname, "./src/pages")
     },
     extensions: [".js", ".ts", ".tsx"]
   },

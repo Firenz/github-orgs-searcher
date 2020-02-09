@@ -10,7 +10,7 @@ import { SearchMembersComponent, MembersListComponent } from "components";
 
 interface Props {}
 
-export const SearchMembersScene = (props: Props) => {
+export const SearchMembersPage = (props: Props) => {
   const [updatedSearchTerm, setUpdatedSearchTerm] = React.useState<string>("");
   
   const handleUpdatedSearchTerm = (newTerm: string) => {

@@ -1,12 +1,13 @@
 import * as React from "react";
 
-import { SearchMembersScene } from "scenes";
+import { SearchMembersPage } from "pages";
+import { Router } from "router";
 
 export const App: React.FunctionComponent = () => {
 
   return (
     <React.Fragment>
-      <SearchMembersScene />
+      <Router />
     </React.Fragment>
   );
 };
