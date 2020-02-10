@@ -85,9 +85,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       alignItems: "center"
     },
-    gitHubTitle: {
-
-    },
+    gitHubTitle: {},
     gitHubNumber: {
       width: "fit-content",
       padding: `0.4rem 0.6rem`,
@@ -189,20 +187,50 @@ export const MemberDetailsCardComponent = (props: Props) => {
       <CardContent className={classes.cardContent}>
         <div className={classes.gitHubInfo}>
           <div className={classes.gitHubInfoComponent}>
-            <Typography variant="h6" component="h3" className={classes.gitHubTitle}>Repositories</Typography>
-            <Typography className={classes.gitHubNumber}>{user.public_repos}</Typography>
+            <Typography
+              variant="h6"
+              component="h3"
+              className={classes.gitHubTitle}
+            >
+              Repositories
+            </Typography>
+            <Typography className={classes.gitHubNumber}>
+              {user.public_repos}
+            </Typography>
           </div>
           <div className={classes.gitHubInfoComponent}>
-            <Typography variant="h6" component="h3" className={classes.gitHubTitle}>Followers</Typography>
-            <Typography className={classes.gitHubNumber}>{user.followers}</Typography>
+            <Typography
+              variant="h6"
+              component="h3"
+              className={classes.gitHubTitle}
+            >
+              Followers
+            </Typography>
+            <Typography className={classes.gitHubNumber}>
+              {user.followers}
+            </Typography>
           </div>
           <div className={classes.gitHubInfoComponent}>
-            <Typography variant="h6" component="h3" className={classes.gitHubTitle}>Following</Typography>
-            <Typography className={classes.gitHubNumber}>{user.following}</Typography>
+            <Typography
+              variant="h6"
+              component="h3"
+              className={classes.gitHubTitle}
+            >
+              Following
+            </Typography>
+            <Typography className={classes.gitHubNumber}>
+              {user.following}
+            </Typography>
           </div>
         </div>
-        <Divider variant="middle" />
-        <Typography variant="body1" className={classes.bio}>{user.bio}</Typography>
+        {user.bio && (
+          <React.Fragment>
+            <Divider variant="middle" />
+            <Typography variant="body1" className={classes.bio}>
+              {user.bio}
+            </Typography>
+          </React.Fragment>
+        )}
       </CardContent>
       <Divider />
       <CardActions className={classes.cardAction}>
