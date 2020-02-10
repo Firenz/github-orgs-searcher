@@ -11,6 +11,7 @@ module.exports = {
       api: path.resolve(__dirname, "./src/api"),
       models: path.resolve(__dirname, "./src/models"),
       router: path.resolve(__dirname, "./src/router"),
+      context: path.resolve(__dirname, "./src/context"),
       common: path.resolve(__dirname, "./src/common"),
       components: path.resolve(__dirname, "./src/components"),
       layouts: path.resolve(__dirname, "./src/layouts"),
@@ -21,14 +22,16 @@ module.exports = {
   entry: ["./main.tsx"],
   output: {
     path: path.join(basePath, "dist"),
-    filename: "[name].js"
+    filename: "[hash].[name].js",
+    publicPath: '/'
   },
   devtool: "inline-source-map",
   devServer: {
     inline: true,
     host: "localhost",
     port: 8080,
-    stats: "minimal"
+    stats: "minimal",
+    historyApiFallback: true
   },
   module: {
     rules: [

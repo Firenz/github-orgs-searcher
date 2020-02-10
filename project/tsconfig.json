@@ -17,6 +17,7 @@
       "api": ["api/"],
       "models": ["models/"],
       "router": ["router/"],
+      "context": ["context/"],
       "common": ["common/"],
       "components": ["components/"],
       "layouts": ["layouts/"],
