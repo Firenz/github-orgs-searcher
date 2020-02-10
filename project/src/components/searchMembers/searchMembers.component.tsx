@@ -4,6 +4,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 
 import { useDebounce } from "common";
+import { SearchTermContext } from "context";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,12 +18,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-interface Props {
-  onUpdateSearchTerm: (newTerm: string) => void;
-}
+interface Props {}
 
 export const SearchMembersComponent = (props: Props) => {
   const classes = useStyles(props);
+  const context = React.useContext(SearchTermContext);
 
   const [searchTerm, setSearchTerm] = React.useState<string>("");
 
@@ -30,7 +30,13 @@ export const SearchMembersComponent = (props: Props) => {
   const debouncedSearchTerm = useDebounce(searchTerm, waitingTime);
 
   React.useEffect(() => {
-    props.onUpdateSearchTerm(debouncedSearchTerm);
+    if(context.searchTerm === "") return;
+    console.log(`mounted with search term on context: ${context.searchTerm}`);
+    context.setSearchTerm(context.searchTerm);
+  }, []);
+
+  React.useEffect(() => {
+    context.setSearchTerm(debouncedSearchTerm);
   }, [debouncedSearchTerm]);
 
   return (

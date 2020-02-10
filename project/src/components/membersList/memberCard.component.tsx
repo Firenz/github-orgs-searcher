@@ -15,6 +15,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { GitHub, Mail, Public } from "@material-ui/icons";
 
 import { MemberEntity } from "models/member";
+import { SearchTermContext } from "context";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -60,6 +61,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const MemberCardComponent = (props: { member: MemberEntity }) => {
   const classes = useStyles(props);
+  const context = React.useContext(SearchTermContext);
 
   return (
     <Card className={classes.card}>
@@ -120,7 +122,7 @@ export const MemberCardComponent = (props: { member: MemberEntity }) => {
       <Divider />
       <CardActions className={classes.cardAction}>
         <Link className={classes.link} to={`/member/${props.member.login}`}>
-          <Button fullWidth>More info</Button>
+          <Button fullWidth onClick={() => console.log(`context when clicking for member details: ${context.searchTerm}`)}>More info</Button>
         </Link>
       </CardActions>
     </Card>

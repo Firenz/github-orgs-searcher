@@ -4,6 +4,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 import { memberAPI } from "api/memberAPI";
 import { MemberEntity } from "models/member";
+import { SearchTermContext } from "context";
 import { MembersNotDisplayingComponent } from "./membersNotDisplaying.component";
 import { MemberCardComponent } from "./memberCard.component";
 
@@ -25,22 +26,29 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Props {
-  newSearchTerm: string;
+  // newSearchTerm: string;
 }
 
 export const MembersListComponent = (props: Props) => {
   const classes = useStyles(props);
+  const context = React.useContext(SearchTermContext);
 
   const [members, setMembers] = React.useState<MemberEntity[]>([]);
   const [areMembersLoaded, setAreMembersLoaded] = React.useState<boolean>(
     false
   );
+  const [isNotSearchedYet, setIsNotSearchedYet] = React.useState<boolean>(true);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  const loadMembers = () => {
+  let firstLoad: boolean = true;
+
+  const loadMembers = (searchTerm: string) => {
     setAreMembersLoaded(false);
+    setIsLoading(true);
     memberAPI
-      .getAllMembers(props.newSearchTerm)
+      .getAllMembers(searchTerm)
       .then(members => {
+        setIsLoading(false);
         setMembers(members);
 
         if (members && members.length > 0) {
@@ -50,18 +58,42 @@ export const MembersListComponent = (props: Props) => {
         }
       })
       .catch(() => {
+        setIsLoading(false);
         setAreMembersLoaded(false);
       });
   };
 
   React.useEffect(() => {
-    loadMembers();
-  }, [props.newSearchTerm]);
+    if(isNotSearchedYet && context.searchTerm === ""){
+      return;
+    }
+    else{
+      setIsNotSearchedYet(false);
+      loadMembers(context.searchTerm);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if(isNotSearchedYet && context.searchTerm === ""){
+      return;
+    }
+    else{
+      setIsNotSearchedYet(false);
+      loadMembers(context.searchTerm);
+    }
+  }, [context.searchTerm]);
 
   return (
     <React.Fragment>
       <section className={classes.gridSection}>
-        {areMembersLoaded ? (
+        {/* {isNotSearchedYet && <MembersNotDisplayingComponent displayingText="Please search for an organization"/>} */}
+        {isLoading && (
+          <MembersNotDisplayingComponent displayingText="Searching..." />
+        )}
+        {(!isLoading && !areMembersLoaded) && (
+          <MembersNotDisplayingComponent displayingText="There are no members to display" />
+        )}
+        {areMembersLoaded && (
           <Grid container className={classes.grid}>
             {members.map((member: MemberEntity) => (
               <Grid item key={member.id}>
@@ -69,8 +101,6 @@ export const MembersListComponent = (props: Props) => {
               </Grid>
             ))}
           </Grid>
-        ) : (
-          <MembersNotDisplayingComponent />
         )}
       </section>
     </React.Fragment>

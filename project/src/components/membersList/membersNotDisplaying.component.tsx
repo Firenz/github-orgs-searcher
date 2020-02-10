@@ -10,14 +10,17 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-interface Props {}
+interface Props {
+  displayingText: string
+}
 
 export const MembersNotDisplayingComponent = (props: Props) => {
   const classes = useStyles(props);
 
   return (
     <Typography className={classes.paragraph} variant="body2" component="p">
-      There are no members to display.
+      {/* There are no members to display. */}
+      {props.displayingText}
     </Typography>
   );
 };
