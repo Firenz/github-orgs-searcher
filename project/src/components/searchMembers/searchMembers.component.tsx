@@ -24,15 +24,13 @@ export const SearchMembersComponent = (props: Props) => {
   const classes = useStyles(props);
   const context = React.useContext(SearchTermContext);
 
-  const [searchTerm, setSearchTerm] = React.useState<string>("");
+  const [searchTerm, setSearchTerm] = React.useState<string>(context.searchTerm);
 
   const waitingTime: number = 500;
   const debouncedSearchTerm = useDebounce(searchTerm, waitingTime);
 
   React.useEffect(() => {
-    if(context.searchTerm === "") return;
-    console.log(`mounted with search term on context: ${context.searchTerm}`);
-    context.setSearchTerm(context.searchTerm);
+    context.setSearchTerm(searchTerm);
   }, []);
 
   React.useEffect(() => {
@@ -51,6 +49,7 @@ export const SearchMembersComponent = (props: Props) => {
           label="GitHub Organization"
           type="text"
           placeholder="lemoncode"
+          value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
           fullWidth
           margin="normal"

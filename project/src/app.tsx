@@ -1,13 +1,16 @@
 import * as React from "react";
 
-import { SearchMembersPage } from "pages";
 import { Router } from "router";
+import { SearchTermContext } from "context";
 
 export const App: React.FunctionComponent = () => {
+  const [searchTerm, setSearchTerm] = React.useState<string>("");
 
   return (
     <React.Fragment>
-      <Router />
+      <SearchTermContext.Provider value={{ searchTerm, setSearchTerm }}>
+        <Router />
+      </SearchTermContext.Provider>
     </React.Fragment>
   );
 };

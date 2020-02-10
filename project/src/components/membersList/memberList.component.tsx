@@ -34,11 +34,9 @@ export const MembersListComponent = (props: Props) => {
   const context = React.useContext(SearchTermContext);
 
   const [members, setMembers] = React.useState<MemberEntity[]>([]);
-  const [areMembersLoaded, setAreMembersLoaded] = React.useState<boolean>(
-    false
-  );
-  const [isNotSearchedYet, setIsNotSearchedYet] = React.useState<boolean>(true);
+  const [areMembersLoaded, setAreMembersLoaded] = React.useState<boolean>(false);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [isNotSearchedYet, setIsNotSearchedYet] = React.useState<boolean>(true);
 
   let firstLoad: boolean = true;
 
@@ -63,15 +61,15 @@ export const MembersListComponent = (props: Props) => {
       });
   };
 
-  React.useEffect(() => {
-    if(isNotSearchedYet && context.searchTerm === ""){
-      return;
-    }
-    else{
-      setIsNotSearchedYet(false);
-      loadMembers(context.searchTerm);
-    }
-  }, []);
+  // React.useEffect(() => {
+  //   if(isNotSearchedYet && context.searchTerm === ""){
+  //     return;
+  //   }
+  //   else{
+  //     setIsNotSearchedYet(false);
+  //     loadMembers(context.searchTerm);
+  //   }
+  // }, []);
 
   React.useEffect(() => {
     if(isNotSearchedYet && context.searchTerm === ""){
